@@ -3,6 +3,7 @@ package com.example.ja010.myapplication;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,14 @@ public class Fragment1 extends Fragment {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(b1.getText().toString().equals("사과 table(비어있음)")){
+                    b1.setText("사과 Table");
+                    AlertDialog.Builder ch = new AlertDialog(this);
+                    ch.setTitle("예약");
+
+                }
+                else{
+                }
                 Date dt = new Date();
                 SimpleDateFormat form = new SimpleDateFormat("yyyyMMdd HH:mm");
                 String str =form.format(dt);
