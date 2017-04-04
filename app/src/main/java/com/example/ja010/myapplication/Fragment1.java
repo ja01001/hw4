@@ -3,6 +3,7 @@ package com.example.ja010.myapplication;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -265,7 +266,7 @@ public class Fragment1 extends Fragment {
             t6.setText("");
         } // table 값들 초기화
         void sd (final data a ){
-            View dig = View.inflate(getActivity(),R.layout.message1,null); // 대화창
+            final View dig = View.inflate(getActivity(),R.layout.message1,null); // 대화창
             AlertDialog.Builder ch = new AlertDialog.Builder(getActivity());
             e1 = (EditText)dig.findViewById(R.id.et1);
             e2 = (EditText)dig.findViewById(R.id.et2);
@@ -277,10 +278,19 @@ public class Fragment1 extends Fragment {
                     setPositiveButton("확인", new DialogInterface.OnClickListener() { // 데이터 저장 하기
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            String ee1 =e1.getText().toString();
+                            String ee2 = e2.getText().toString();
+                            if (ee1.getBytes().length == 0) {
+                                e1.requestFocus();
 
+
+                            } else if (ee2.getBytes().length == 0) {
+                                e2.requestFocus();
+                            } else{
+                                sp_co = Integer.parseInt(ee1);
+                                pz_co = Integer.parseInt(ee2);
+                            }
 //                                    Toast.makeText(getContext(),e1.getText().toString(),Toast.LENGTH_SHORT).show();
-                            sp_co = Integer.parseInt(e1.getText().toString());
-                            pz_co = Integer.parseInt(e2.getText().toString());
                             sp_sum =  sp_co*10000;
                             pz_sum = pz_co*12000;
                             //       Toast.makeText(getContext(),"a"+sp_co,Toast.LENGTH_SHORT).show();
@@ -308,8 +318,9 @@ public class Fragment1 extends Fragment {
                                 a.bo3 =rb3.isChecked();
                                 sts(a);
                             }
+                            Snackbar.make(dig,"예약되었습니다.",1000).setAction("ok",null).show();
+                        }}).setNegativeButton("취소", null).show();
 
-                        }}).show();
         }// 추가
         void sujung(final data a){
 
@@ -407,4 +418,5 @@ public class Fragment1 extends Fragment {
             }
 
         } // button 초기화
+
 }
