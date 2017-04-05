@@ -19,5 +19,6 @@ public class data {
     boolean bo2;
     boolean bo3;
     int tt;
+    boolean setdata;
 
 }

@@ -30,7 +30,7 @@ public class Fragment1 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View fv = inflater.inflate(R.layout.fragment1,container,false);
+        final View fv = inflater.inflate(R.layout.fragment1,container,false);
         b1=(Button)fv.findViewById(R.id.bt1); //1번테이블
         b2=(Button)fv.findViewById(R.id.bt2); //2번테이블
         b3=(Button)fv.findViewById(R.id.bt3); // 3번테이블
@@ -61,13 +61,25 @@ public class Fragment1 extends Fragment {
                     btt1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            sd(a);
+
+                            if(a.setdata == false){
+                                sd(a);
+                            }
+                            else{
+                                Snackbar.make(fv,"이미 예약중입니다.",1000).setAction("ok",null).show();
+                            }
                         }
                     });
                     btt2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            sujung(a);
+                            if(a.setdata == true){
+                                sujung(a);
+                            }
+                            else{
+                                Snackbar.make(fv,"예약이 없습니다. 새주문을 누르세요.",1000).setAction("ok",null).show();
+                            }
+
                         }
                     });
                     btt3.setOnClickListener(new View.OnClickListener() {
@@ -109,13 +121,23 @@ public class Fragment1 extends Fragment {
                     btt1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            sd(b);
+                            if(b.setdata == false){
+                                sd(b);
+                            }
+                            else{
+                                Snackbar.make(fv,"예약중입니다.",1000).setAction("ok",null).show();
+                            }
                         }
                     });
                     btt2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            sujung(b);
+                            if(b.setdata == true){
+                                sujung(b);
+                            }
+                            else{
+                                Snackbar.make(fv,"예약이 없습니다. 새주문을 누르세요.",1000).setAction("ok",null).show();
+                            }
                         }
                     });
                     btt3.setOnClickListener(new View.OnClickListener() {
@@ -156,13 +178,23 @@ public class Fragment1 extends Fragment {
                     btt1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            sd(c);
+                            if(c.setdata == false){
+                                sd(c);
+                            }
+                            else{
+                                Snackbar.make(fv,"예약 중입니다.",1000).setAction("ok",null).show();
+                            }
                         }
                     });
                     btt2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            sujung(c);
+                            if(c.setdata == true){
+                                sujung(c);
+                            }
+                            else{
+                                Snackbar.make(fv,"예약이 없습니다. 새주문을 누르세요.",1000).setAction("ok",null).show();
+                            }
                         }
                     });
                     btt3.setOnClickListener(new View.OnClickListener() {
@@ -203,13 +235,23 @@ public class Fragment1 extends Fragment {
                     btt1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            sd(d);
+                            if(d.setdata == false){
+                                sd(d);
+                            }
+                            else{
+                                Snackbar.make(fv,"예약중입니다.",1000).setAction("ok",null).show();
+                            }
                         }
                     });
                     btt2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            sujung(d);
+                            if(d.setdata == true){
+                                sujung(d);
+                            }
+                            else{
+                                Snackbar.make(fv,"예약이 없습니다. 새주문을 누르세요.",1000).setAction("ok",null).show();
+                            }
                         }
                     });
                     btt3.setOnClickListener(new View.OnClickListener() {
@@ -254,7 +296,7 @@ public class Fragment1 extends Fragment {
             b.members ="";
             b.time = "";
             b.name = "";
-
+            b.setdata = false;
 
         }// data 초기화
         void clear2(){
@@ -318,7 +360,7 @@ public class Fragment1 extends Fragment {
                                 a.bo3 =rb3.isChecked();
                                 sts(a);
                             }
-                            Snackbar.make(dig,"예약되었습니다.",1000).setAction("ok",null).show();
+                            a.setdata =true;
                         }}).setNegativeButton("취소", null).show();
 
         }// 추가
